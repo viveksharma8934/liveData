@@ -24,16 +24,6 @@ module.exports = {
       // res.send(avg);
       const { time1, time2 } = req.body;
       console.log(time1);
-    //   var timeStart = new Date(time1).getHours();
-    //   var timeEnd = new Date(time2).getHours();
-    //     console.log(timeStart + " "+timeEnd);
-
-    //     var Difference = timeEnd -timeStart;
-    //   if(Difference < 0){
-    //       Difference +=24;
-    //   }
-
-    //   console.log("hours "+Difference);
 
       const results = await Data.aggregate([
         {
@@ -57,7 +47,7 @@ module.exports = {
     ]);
     const totalHours = (hours[0].dateDifference/3600000);
     const avgCountPerHour = (results[0].totalCount / totalHours);
-    res.json({avgCount:avgCountPerHour});
+    res.json({avgCount:avgCountPerHour,TotalHour:totalHours,TotalCount:results[0].totalCount});
     console.log(hours[0].dateDifference);
     console.log(hours[0].dateDifference/3600000);
     } catch (err) {
